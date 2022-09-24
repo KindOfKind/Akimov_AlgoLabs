@@ -357,7 +357,7 @@ void GameMode::CalculateRulingQuality()
 	float deadPartInThisRound = (float)gS->rS.deathsFromStarvation / populationAtRoundStart;
 	float deathsPartsSum = gS->GetDeathsPartsSum() + deadPartInThisRound;
 
-	float avDeaths = deathsPartsSum / gS->GetRound();
+	float avDeaths = deathsPartsSum / (gS->GetRound() - 1);
 	gS->SetDeathsPartsSum(deathsPartsSum);
 	gS->SetAverageDeathsPerRound(avDeaths);
 
@@ -409,8 +409,6 @@ bool GameMode::LoadGame(const std::string& saveFilePath)
 	
 	fs >> gS->rS.landUnitPrice; fs >> gS->rS.deathsFromStarvation; fs >> gS->rS.deathsFromPlague; fs >> gS->rS.newPeopleNum;
 	fs >> gS->rS.foodHarvested; fs >> gS->rS.foodFromLandUnit; fs >> gS->rS.foodSpoiledByRats;
-
-	std::cout << "\n\n\n" << temp << "\n\n\n";
 
 	fs >> peopleFed; fs >> landSowed; fs >> populationAtRoundStart;
 }
